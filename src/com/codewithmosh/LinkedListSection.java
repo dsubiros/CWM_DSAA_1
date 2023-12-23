@@ -14,17 +14,21 @@ public class LinkedListSection {
         list.addLast(new Node(10));
         list.addLast(new Node(20));
         list.addLast(new Node(30));
-        list.addFirst(new Node(101));
-        list.addFirst(new Node(102));        
+        list.addLast(new Node(40));
+        list.addLast(new Node(50));
+        // list.addFirst(new Node(101));
+        // list.addFirst(new Node(102));
         list.print();
+        System.out.println(list.contains(50));
         list.deleteLast();
         list.print();
+        System.out.println(list.contains(50));
         list.deleteLast();
         list.print();
         list.deleteFirst();
         list.print();
 
-        // System.out.println(list.indexOf(20));
+        System.out.println("Index of '" + 101 + "' is " + list.indexOf(101));
 
     }
 }

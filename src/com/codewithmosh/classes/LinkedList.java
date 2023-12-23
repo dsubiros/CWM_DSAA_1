@@ -8,23 +8,21 @@ public class LinkedList {
         return first;
     }
 
-    public void addFirst(Node item) {
+    public void addFirst(Node node) {
         if (this.first == null) {
-            this.first = item;
-            this.last = item;
+            this.first = this.last = node;
         } else {
-            item.setNext(this.first);
-            this.first = item;
+            node.setNext(this.first);
+            this.first = node;
         }
     }
 
-    public void addLast(Node item) {
-        if (this.last == null) {
-            this.first = item;
-            this.last = item;
-        } else {
-            this.last.setNext(item);
-            this.last = item;
+    public void addLast(Node node) {
+        if (this.first == null) 
+            first = last = node; 
+         else {
+            last.setNext(node);
+            last = node;
         }
     }
 
@@ -61,8 +59,6 @@ public class LinkedList {
     }
 
     public void print() {
-        // if (this.first == null)
-        //     return;
         Node current = this.first;
 
         while (current != null) {
@@ -73,8 +69,6 @@ public class LinkedList {
 
     public int indexOf(int value) {
         int idx = -1;
-        // if (this.first == null)
-        // return -1;
 
         Node current = this.first;
 
@@ -88,6 +82,20 @@ public class LinkedList {
 
         return idx;
 
+    }
+
+    public boolean contains(int value) {
+        System.out.println("Run 'contains(" + value + ")'");
+
+        Node current = this.first;
+
+        while (current != null) {
+            if (current.getValue() == value)
+                return true;
+            current = current.getNext();
+        }
+
+        return false;
     }
 
     // addFirst
