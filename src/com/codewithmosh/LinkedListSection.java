@@ -32,6 +32,21 @@ public class LinkedListSection {
         System.out.println("Index of '" + 500 + "' is " + list.indexOf(500) + " (should be -1)");
         System.out.println("Current list size is " + list.length());
         System.out.println("Run toArray() => " + Arrays.toString(list.toArray()));
+        
+        list.reverseUsingAddFirst();
+        list.print();
+        list.reverseUsingAddFirst();
+        list.print();
+        list.reverseUsingAddFirst();
+        list.print();
+
+        System.out.println("--------------------------");
+        list.reverse2();
+        list.print();
+        list.reverse2();
+        list.print();
+        list.reverse2();
+        list.print();
 
     }
 }
