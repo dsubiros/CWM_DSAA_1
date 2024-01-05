@@ -1,5 +1,7 @@
 package com.codewithmosh;
 
+import java.util.Arrays;
+
 import com.codewithmosh.classes.LinkedList;
 
 public class LinkedListSection {
@@ -29,6 +31,7 @@ public class LinkedListSection {
         System.out.println("Index of '" + 20 + "'  is " + list.indexOf(20) + "  (should be 2)");
         System.out.println("Index of '" + 500 + "' is " + list.indexOf(500) + " (should be -1)");
         System.out.println("Current list size is " + list.length());
+        System.out.println("Run toArray() => " + Arrays.toString(list.toArray()));
 
     }
 }

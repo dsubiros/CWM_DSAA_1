@@ -91,7 +91,7 @@ public class LinkedList {
             last = previous;
             last.next = null;
         }
-        
+
         length--;
 
         System.out.println();
@@ -162,6 +162,22 @@ public class LinkedList {
         return this.indexOf(value) != -1;
     }
 
+    public int[] toArray() {
+
+        Node current = first;
+
+        int[] result = new int[length];
+
+        int idx = 0;
+
+        while (current != null) {
+            result[idx++] = current.value;
+            current = current.next;
+        }
+
+        return result;
+    }
+
     // addFirst
     // addLast
     // deleteFirst
@@ -170,4 +186,5 @@ public class LinkedList {
     // contains
     // indexOf
     // size
+    // toArray
 }
