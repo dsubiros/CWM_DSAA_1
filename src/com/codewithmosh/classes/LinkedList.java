@@ -1,5 +1,6 @@
 package com.codewithmosh.classes;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class LinkedList {
@@ -207,21 +208,19 @@ public class LinkedList {
         // var previous = getPrevious(last);
 
         // Node previous = null;
-        
+
         Node current = last;
         var tmp = last;
         last = first;
         first = tmp;
-        
+
         Node previous = null;
-
-
 
         while (current != null) {
             System.out.println(current.value);
             previous = getPrevious(current);
             current.next = previous;
-            current = previous;            
+            current = previous;
         }
 
         // var tmp = last;
@@ -230,6 +229,35 @@ public class LinkedList {
     }
 
     public void reverse2() {
+        System.out.println("Run reverse()");
+
+        // [ 10 -> 20 -> 30 ]
+        // [ 30 ]
+
+        if (isEmpty())
+            return;
+
+        if (length <= 1)
+            return;
+
+        System.out.println("Initial: " + Arrays.toString(this.toArray()));
+
+        var previous = first;
+        var current = first.next;
+        while (current != null) {
+            // System.out.println("current.value=" + current.value);
+            var next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+
+        last = first;
+        last.next = null;
+        first = previous;
+    }
+
+    public void reverse3() {
         System.out.println("Run reverse()");
 
         // [ 10 -> 20 -> 30 ]
@@ -259,19 +287,17 @@ public class LinkedList {
 
         // Node previous = null;
 
-        
         Node current = last;
         Node previous = null;
         Node next = null;
 
         do {
             System.out.println("current.value=" + current.value);
-            previous = getPrevious(current);            
+            previous = getPrevious(current);
             next = current.next;
-            current.next = previous;            
-            // current = current.next;            
-        }
-        while (next != null);
+            current.next = previous;
+            // current = current.next;
+        } while (next != null);
 
         // var tmp = last;
         // last = first;

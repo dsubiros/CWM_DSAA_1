@@ -37,16 +37,21 @@ public class LinkedListSection {
         list.print();
         list.reverseUsingAddFirst();
         list.print();
-        list.reverseUsingAddFirst();
-        list.print();
+        // list.reverseUsingAddFirst();
+        // list.print();
 
-        System.out.println("--------------------------");
+        System.out.println("--------------------------" + Arrays.toString(list.toArray()));
+        
+        list.removeFirst();
+        list.addLast(40);
+        list.addLast(50);
+        
         list.reverse2();
         list.print();
-        list.reverse2();
-        list.print();
-        list.reverse2();
-        list.print();
+        // list.reverse2();
+        // list.print();
+        // list.reverse2();
+        // list.print();
 
     }
 }
