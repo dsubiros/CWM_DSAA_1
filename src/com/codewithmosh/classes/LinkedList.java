@@ -3,6 +3,8 @@ package com.codewithmosh.classes;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
+import javax.naming.directory.InvalidAttributesException;
+
 public class LinkedList {
     private class Node {
         private int value;
@@ -359,6 +361,30 @@ public class LinkedList {
 
     }
 
+    public int getKthFromTheEnd(int k) {
+
+        if (isEmpty())
+            throw new IllegalStateException("The list is empty");
+
+        if (k < 1 || k > length)
+            throw new NoSuchElementException("Given position of " + k +" is out of range");
+
+
+        int index = 0;
+        var current = this.first;
+        var kth = this.first;
+
+        while (current != null) {
+            if (index > k - 1)
+                kth = kth.next;
+
+            current = current.next;
+            index++;
+        }
+
+        return kth.value;
+
+    }
     // addFirst
     // addLast
     // deleteFirst
@@ -369,4 +395,5 @@ public class LinkedList {
     // size
     // toArray
     // reverse
+    // getKthFromTheEnd(k)
 }
