@@ -362,29 +362,25 @@ public class LinkedList {
     }
 
     public int getKthFromTheEnd(int k) {
-
         if (isEmpty())
             throw new IllegalStateException("The list is empty");
-
         if (k < 1 || k > length)
-            throw new NoSuchElementException("Given position of " + k +" is out of range");
-
+            throw new NoSuchElementException("Given position of " + k + " is out of range");
 
         int index = 0;
         var current = this.first;
         var kth = this.first;
 
+        // Move "current" pointer till it reaches the end
+        // Move "kth" pointer only when "current" pointer is ahead at
+        // distance k-1
         while (current != null) {
-            if (index > k - 1)
-                kth = kth.next;
-
+            kth = index++ > k - 1 ? kth.next : kth;
             current = current.next;
-            index++;
         }
-
         return kth.value;
-
     }
+
     // addFirst
     // addLast
     // deleteFirst
