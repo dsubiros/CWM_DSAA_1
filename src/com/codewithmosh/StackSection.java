@@ -12,8 +12,20 @@ public class StackSection {
 
         var stack1 = new MyStack();
         // var result = stack1.reverseString("XYZ");
-        var result = stack1.reverseString(null);
-        System.out.println(result);
+        // var result = stack1.reverseString(null);
+        // System.out.println(result);
+
+        var str = "(1 + 2)";
+        System.out.println(str + " is balanced: " + stack1.isStringBalanced(str));
+        
+        str = "(20 + (7))";
+        System.out.println(str + " is balanced: " + stack1.isStringBalanced(str));
+
+        str = "(<20 + (7))";
+        System.out.println(str + " is balanced: " + stack1.isStringBalanced(str));
+        
+        str = "(<20> + <<(7)>>)";
+        System.out.println(str + " is balanced: " + stack1.isStringBalanced(str));
 
     }
 
