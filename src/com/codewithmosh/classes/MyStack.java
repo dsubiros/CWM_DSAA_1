@@ -1,71 +1,70 @@
 package com.codewithmosh.classes;
 
-import java.util.HashMap;
-import java.util.Stack;
+import java.util.Arrays;
+import java.util.EmptyStackException;
 
 public class MyStack {
-    private HashMap<Character, Character> map;
+    private int[] items = new int[5];
+    private int count;
 
     public MyStack() {
-        map = new HashMap<Character, Character>();
-        map.put(')', '(');
-        map.put(']', '[');
-        map.put('}', '{');
-        map.put('>', '<');
+        for (int i = 0; i < items.length; i++) {
+            items[i] = 0;
+        }
     }
 
-    private Boolean isLeftBracket(Character c) {
-        return map.containsValue(c); 
+    private boolean isEmpty() {
+        return count == 0;
     }
 
-    private Boolean isRightBracket(Character c) {
-        return map.containsKey(c);
-    }
-    
-    private Boolean bracketsMatch(Character left, Character right) {
-        return left != map.get(right);
-    }
+    public int pop() {
+        System.out.println("Pop: " + peek());
 
-    public String reverseString(String input) {
+        if (isEmpty())
+            throw new EmptyStackException();
 
-        if (input == null)
-            throw new IllegalArgumentException();
-
-        var stack = new Stack<Character>();
-
-        for (char ch : input.toCharArray())
-            stack.push(ch);
-
-        var result = new StringBuffer();
-
-        while (!stack.isEmpty())
-            result.append(stack.pop());
-
-        return result.toString();
+        return items[--count];
     }
 
-    public Boolean isStringBalanced(String input) {
+    public int peek() {
+        if (isEmpty())
+            throw new EmptyStackException();
 
-        if (input == null)
-            throw new IllegalArgumentException();
+        return items[count - 1];
+    }
 
-        var stack = new Stack<Character>();
+    public void push(int item) {
+        System.out.println("Push: " + item);
+        if (count == items.length) {
+            var copy = new int[count * 2];
 
-        for (char c : input.toCharArray()) {
-            if (isLeftBracket(c))
-                stack.push(c);
-
-            else if (isRightBracket(c)) {
-                if (stack.isEmpty())
-                    return false;
-
-                var top = stack.pop();
-                if (bracketsMatch(top, c))
-                    return false;
-            }
+            for (int i = 0; i < count; i++)
+                copy[i] = items[i];
+            items = copy;
         }
 
-        return stack.isEmpty();
+        items[count++] = item;
     }
+
+    public void print() {
+        System.out.println("\n");
+        
+        for (int i = count - 1; i > -1; i--)
+            System.out.println(items[i]);
+            // System.out.println(items[i] + "\n");
+
+        System.out.println("\n");
+    }
+
+    @Override
+    public String toString() { 
+        return Arrays.toString(Arrays.copyOfRange(items, 0, count));
+    }
+
+
+    // push
+    // pop
+    // peek
+    // isEmpty
 
 }
