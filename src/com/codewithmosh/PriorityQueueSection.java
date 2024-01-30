@@ -20,10 +20,14 @@ public class PriorityQueueSection {
         System.out.println(q.toString());
         q.insert(2);
         System.out.println(q.toString());
-        // q.insert(3);
+        q.remove();
         // System.out.println(q.toString());
-        // q.insert(4);
-        // System.out.println(q.toString());
+        q.remove();
+        q.remove();
+        q.remove();
+        q.remove();
+        System.out.println(q.toString());
+
 
     }
 }
