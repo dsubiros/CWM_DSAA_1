@@ -48,12 +48,18 @@ public class PriorityQueue {
         return item;
     }
 
-    public void insert(int item) {
+    public void add(int item) {
         System.out.println("Insert: " + item);
         if (isFull())
             throw new StackOverflowError();
 
-        // Shifting items
+        int i = shiftItemsToInsert(item);
+        items[i] = item;
+        count++;
+    }
+
+    // Shift items to right
+    private int shiftItemsToInsert(int item) {
         int i;
         for (i = count - 1; i >= front; i--) {
             if (items[i] > item)
@@ -61,9 +67,7 @@ public class PriorityQueue {
             else
                 break;
         }
-
-        items[i + 1] = item;
-        count++;
+        return i + 1;
     }
 
     @Override
