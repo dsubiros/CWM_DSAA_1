@@ -1,7 +1,6 @@
 package com.codewithmosh.classes;
 
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 
 public class MyHashTable {
 
@@ -20,12 +19,10 @@ public class MyHashTable {
         }
     }
 
-    private final int MAX;
-
     private LinkedList<Entry>[] entries;
 
     public MyHashTable(int max) {
-        this.entries = new LinkedList[this.MAX = max];
+        this.entries = new LinkedList[max];
     }
 
     public void remove(int key) {
@@ -57,10 +54,13 @@ public class MyHashTable {
     public void put(int key, String value) {
         System.out.println("Put K: " + key + ", V: " + value);
 
-        var index = hash(key);
+        // var index = hash(key);
 
-        if (this.entries[index] == null)
-            this.entries[index] = new LinkedList<>();
+        // if (this.entries[index] == null)
+        // this.entries[index] = new LinkedList<>();
+
+        // getOrCreateBucket(key)
+        // .addLast(new Entry(key, value));
 
         var entry = getEntry(key);
 
@@ -68,8 +68,12 @@ public class MyHashTable {
             entry.value = value;
             return;
         }
-        getOrCreateBucket(key)
-                .addLast(new Entry(key, value));
+
+        var bucket = getOrCreateBucket(key);
+        bucket.add(new Entry(key, value));
+
+        // getOrCreateBucket(key).add(new Entry(key, value));
+
     }
 
     private LinkedList<Entry> getBucket(int key) {
@@ -80,7 +84,7 @@ public class MyHashTable {
         var index = hash(key);
         var bucket = entries[index];
         if (bucket == null)
-            this.entries[hash(key)] = new LinkedList<>();
+            bucket = this.entries[index] = new LinkedList<>();
 
         return bucket;
     }
