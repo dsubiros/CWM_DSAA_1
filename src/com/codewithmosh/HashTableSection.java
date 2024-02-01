@@ -3,10 +3,12 @@ package com.codewithmosh;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 
 import com.codewithmosh.classes.CharFinder;
+import com.codewithmosh.classes.MyHashTable;
 
 public class HashTableSection {
     public static void main(String[] args) {
@@ -21,7 +23,36 @@ public class HashTableSection {
 
         // introToSets();
 
-        findFirstRepeatedChar();
+        // findFirstRepeatedChar();
+
+        // System.out.println(intHash(123456));
+
+        // System.out.println(stringHash("123456-A"));
+
+        customHashTable();
+
+    }
+
+    private static void customHashTable() {
+        MyHashTable table = new MyHashTable(5);
+
+        table.put(1, "Hello 1a");
+        table.put(1, "Hello 1b");
+        table.put(1, "Hello 1c");
+        table.put(11, "Hello 11");
+        table.put(2, "Hello 2");
+        table.put(4, "Hello 4");
+        table.put(1000, "Hello 1000");
+        table.put(1007, "Hello 1001");
+
+        System.out.println("\n" + table);
+
+        System.out.println("Get entry V: 1007, " + table.get(1007));
+        System.out.println("Get entry V: 1, " + table.get(1));
+        System.out.println("Remove V: 1... ");
+        table.remove(1);
+        System.out.println("Get entry V: 1, " + table.get(1));
+
 
     }
 
@@ -66,5 +97,27 @@ public class HashTableSection {
 
         for (var item : map.entrySet())
             System.out.println(item);
+    }
+
+    private static int intHash(int number) {
+        // items[1] = "Mosh"
+        // 100
+        // 0 - 99
+
+        return number % 100;
+    }
+
+    private static int stringHash(String key) {
+        // items[1] = "Mosh"
+        // 100
+        // 0 - 99
+
+        var hash = 0;
+
+        for (var ch : key.toCharArray()) {
+            hash += ch;
+        }
+
+        return hash % 100;
     }
 }
