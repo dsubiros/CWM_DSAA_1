@@ -201,4 +201,29 @@ public class BinaryTree2 {
         return false;
     }
 
+    public boolean isBinarySearchTree() {
+        if (root == null)
+            throw new IllegalStateException();
+
+        return isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBinarySearchTree(Node root, int min, int max) {
+
+        if (root == null)
+            return true;
+
+        if (root.value < min || root.value > max)
+            return false;
+
+        return isBinarySearchTree(root.leftChild, min, root.value - 1)
+                && isBinarySearchTree(root.rightChild, root.value + 1, max);
+    }
+
+    public void swapRoot() {
+        var temp = root.leftChild;
+        root.leftChild = root.rightChild;
+        root.rightChild = temp;
+    }
+
 }

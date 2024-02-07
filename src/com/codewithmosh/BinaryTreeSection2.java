@@ -21,16 +21,28 @@ public class BinaryTreeSection2 {
         minValue();
 
         equals();
+
+        validateBST();
+    }
+
+    private static void validateBST() {
+        System.out.print("\nRUN valudateBST: \n");
+        var tree1 = populateTree(new int[] { 1, 7, 4, 9, 1, 6, 8, 10 });
+        System.out.println("Tree1 is BST: " + tree1.isBinarySearchTree());
+
+        var tree2 = populateTree(new int[] { 20, 14, 10, 6, 8, 7, 98, -17});
+        // tree2.swapRoot();
+
+        System.out.println("Tree2 is BST: " + tree2.isBinarySearchTree());
+
     }
 
     private static void equals() {
         System.out.print("\nRUN equality: ");
-        var tree = populateTree(new int[] { 7, 4, 9, 1, 6, 8, 10});
+        var tree = populateTree(new int[] { 7, 4, 9, 1, 6, 8, 10 });
         var other = populateTree(new int[] { 7, 4, 9, 1, 6, 8, 10 });
         System.out.println(tree.equals(other));
     }
-
-    
 
     private static void minValue() {
         var tree = populateTree(new int[] { 7, 4, 9, 1, 6, 8, 10 });
