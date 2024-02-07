@@ -18,9 +18,21 @@ public class BinaryTree2 {
             return "Node=" + value;
         }
 
+        public boolean isLeaf() {
+            return leftChild == null && rightChild == null;
+        }
+
     }
 
     private Node root;
+
+    public Node getRoot() {
+        return root;
+    }
+
+    public boolean isEmpty() {
+        return root == null;
+    }
 
     public boolean find(int value) {
         if (root == null)
@@ -86,7 +98,7 @@ public class BinaryTree2 {
     }
 
     private void traverseInOrder(Node root) {
-        // left 
+        // left
         // root (print)
         // right
 
@@ -114,7 +126,79 @@ public class BinaryTree2 {
         traversePostOrder(root.leftChild);
         traversePostOrder(root.rightChild);
         System.out.print(root.value + " ");
+    }
 
+    public int height() {
+        System.out.print("\nRUN height: ");
+        return this.height(root);
+    }
+
+    private int height(Node root) {
+        if (root == null)
+            return -1;
+
+        if (root.isLeaf())
+            return 0;
+
+        return 1 + Math.max(
+                height(root.leftChild),
+                height(root.rightChild));
+
+    }
+
+    public int minValue() {
+        System.out.print("\nRUN minValue: ");
+        return this.minValue(root);
+    }
+
+    private int minValue(Node root) {
+        if (root.isLeaf())
+            return root.value;
+
+        var left = minValue(root.leftChild);
+        var right = minValue(root.rightChild);
+
+        return Math.min(Math.min(left, right), root.value);
+    }
+
+    // In a Binary Search Tree, this is always true: left < root < right
+    private int minValueOfBinarySearchTree() {
+        if (root == null)
+            throw new IllegalStateException();
+
+        var current = root;
+        var last = current;
+
+        while (current != null) {
+            last = current;
+            current = current.leftChild;
+        }
+
+        return last.value;
+    }
+
+    public boolean isLeaf(Node node) {
+        return node.leftChild == null && node.rightChild == null;
+    }
+
+    public boolean equals(BinaryTree2 other) {
+        if (other == null)
+            return false;
+
+        return equals(root, other.getRoot());
+    }
+
+    private static boolean equals(Node first, Node second) {
+        if (first == null || second == null) {
+            return true;
+        }
+
+        if (first != null && second != null)
+            return first.value == second.value
+                    && equals(first.leftChild, second.leftChild)
+                    && equals(first.rightChild, second.rightChild);
+
+        return false;
     }
 
 }

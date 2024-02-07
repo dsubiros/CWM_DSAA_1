@@ -1,6 +1,7 @@
 package com.codewithmosh;
 
 import com.codewithmosh.classes.BinaryTree2;
+import com.codewithmosh.classes.BinaryTree2.Node;
 
 public class BinaryTreeSection2 {
     public static void main(String[] args) {
@@ -10,29 +11,53 @@ public class BinaryTreeSection2 {
         // var number = 5;
         // System.out.println("Factorial of " + number + ": " + factorial(number));
 
-
-        var tree = populateTree();
-
+        var tree = populateTree(new int[] { 7, 4, 9, 1, 6, 8, 10 });
         tree.traversePreOrder();
-        
         tree.traverseInOrder();
-        
         tree.traversePostOrder();
-        
+
+        height();
+
+        minValue();
+
+        equals();
     }
 
-    private static BinaryTree2 populateTree() {
+    private static void equals() {
+        System.out.print("\nRUN equality: ");
+        var tree = populateTree(new int[] { 7, 4, 9, 1, 6, 8, 10});
+        var other = populateTree(new int[] { 7, 4, 9, 1, 6, 8, 10 });
+        System.out.println(tree.equals(other));
+    }
+
+    
+
+    private static void minValue() {
+        var tree = populateTree(new int[] { 7, 4, 9, 1, 6, 8, 10 });
+        System.out.println(tree.minValue());
+    }
+
+    private static void height() {
+        var tree = populateTree(new int[] { 7, 4, 9, 1, 6, 8, 10 });
+        // var tree = populateTree(new int[]{});
+        System.out.println(tree.height());
+    }
+
+    private static BinaryTree2 populateTree(int[] numbers) {
         var tree = new BinaryTree2();
 
-        tree.insert(7);
-        tree.insert(4);
-        tree.insert(9);
-        tree.insert(1);
-        tree.insert(6);
-        tree.insert(8);
-        tree.insert(10);
+        for (int i : numbers)
+            tree.insert(i);
 
         return tree;
+
+        // tree.insert(7);
+        // tree.insert(4);
+        // tree.insert(9);
+        // tree.insert(1);
+        // tree.insert(6);
+        // tree.insert(8);
+        // tree.insert(10);
 
         // var a = 1;
 
@@ -52,7 +77,7 @@ public class BinaryTreeSection2 {
 
         // var factorial = 1;
         // for (int i = number; i > 1; i--)
-        //     factorial *= i;
+        // factorial *= i;
         // return factorial;
     }
 }
